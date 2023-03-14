@@ -53919,6 +53919,18 @@ export const typesBundle = {
     },
     "frequency": {
       "rpc": {
+        "frequency": {
+          "getEvents": {
+            "description": "Get block Events",
+            "params": [
+              {
+                "name": "at",
+                "type": "H256"
+              }
+            ],
+            "type": "Vec<RpcEvent>"
+          }
+        },
         "messages": {
           "getBySchemaId": {
             "description": "Get messages by schemaId paginated",
@@ -54008,6 +54020,12 @@ export const typesBundle = {
             null
           ],
           "types": {
+            "RpcEvent": {
+              "phase": "Option<u32>",
+              "pallet": "u8",
+              "event": "u8",
+              "data": "Vec<u8>"
+            },
             "BlockPaginationRequest": {
               "from_block": "BlockNumber",
               "from_index": "u32",
@@ -54066,6 +54084,18 @@ export const typesBundle = {
         }
       },
       "runtime": {
+        "AdditionalRuntimeApi": [
+          {
+            "methods": {
+              "get_events": {
+                "description": "Get the events with simple SCALE decoding",
+                "params": [],
+                "type": "Vec<RpcEvent>"
+              }
+            },
+            "version": 1
+          }
+        ],
         "MessagesRuntimeApi": [
           {
             "methods": {
@@ -54165,6 +54195,18 @@ export const typesBundle = {
     },
     "frequency-rococo": {
       "rpc": {
+        "frequency": {
+          "getEvents": {
+            "description": "Get block Events",
+            "params": [
+              {
+                "name": "at",
+                "type": "H256"
+              }
+            ],
+            "type": "Vec<RpcEvent>"
+          }
+        },
         "messages": {
           "getBySchemaId": {
             "description": "Get messages by schemaId paginated",
@@ -54254,6 +54296,12 @@ export const typesBundle = {
             null
           ],
           "types": {
+            "RpcEvent": {
+              "phase": "Option<u32>",
+              "pallet": "u8",
+              "event": "u8",
+              "data": "Vec<u8>"
+            },
             "BlockPaginationRequest": {
               "from_block": "BlockNumber",
               "from_index": "u32",
@@ -54312,6 +54360,18 @@ export const typesBundle = {
         }
       },
       "runtime": {
+        "AdditionalRuntimeApi": [
+          {
+            "methods": {
+              "get_events": {
+                "description": "Get the events with simple SCALE decoding",
+                "params": [],
+                "type": "Vec<RpcEvent>"
+              }
+            },
+            "version": 1
+          }
+        ],
         "MessagesRuntimeApi": [
           {
             "methods": {
@@ -55306,6 +55366,12 @@ export const typesBundle = {
               "InterbtcStablePoolId": "u32",
               "LendTokenId": "u32",
               "StablePoolId": "u32",
+              "NumberOrHex": {
+                "_enum": {
+                  "Number": "u64",
+                  "Hex": "U256"
+                }
+              },
               "Rate": "FixedU128",
               "Ratio": "Permill",
               "Liquidity": "FixedU128",
@@ -55620,6 +55686,24 @@ export const typesBundle = {
               ],
               "type": "BalanceWrapper"
             },
+            "computeFarmingReward": {
+              "description": "Get a given user's farming rewards due",
+              "params": [
+                {
+                  "name": "account_id",
+                  "type": "AccountId"
+                },
+                {
+                  "name": "pool_currency_id",
+                  "type": "CurrencyId"
+                },
+                {
+                  "name": "reward_currency_id",
+                  "type": "CurrencyId"
+                }
+              ],
+              "type": "BalanceWrapper"
+            },
             "computeVaultReward": {
               "description": "Get a given vault's rewards due",
               "params": [
@@ -55746,6 +55830,24 @@ export const typesBundle = {
               "description": "Get all vaults with non-zero redeemable tokens, ordered in descending order of this amount",
               "params": [],
               "type": "Vec<(VaultId, BalanceWrapper)>"
+            }
+          },
+          "dexStable": {
+            "getA": {
+              "description": "Get amplification coefficient of pool",
+              "params": [
+                {
+                  "name": "pool_id",
+                  "type": "StablePoolId"
+                },
+                {
+                  "name": "at",
+                  "type": "BlockHash",
+                  "isHistoric": true,
+                  "isOptional": true
+                }
+              ],
+              "type": "NumberOrHex"
             }
           }
         },
@@ -55817,6 +55919,12 @@ export const typesBundle = {
               "InterbtcStablePoolId": "u32",
               "LendTokenId": "u32",
               "StablePoolId": "u32",
+              "NumberOrHex": {
+                "_enum": {
+                  "Number": "u64",
+                  "Hex": "U256"
+                }
+              },
               "Rate": "FixedU128",
               "Ratio": "Permill",
               "Liquidity": "FixedU128",
@@ -56131,6 +56239,24 @@ export const typesBundle = {
               ],
               "type": "BalanceWrapper"
             },
+            "computeFarmingReward": {
+              "description": "Get a given user's farming rewards due",
+              "params": [
+                {
+                  "name": "account_id",
+                  "type": "AccountId"
+                },
+                {
+                  "name": "pool_currency_id",
+                  "type": "CurrencyId"
+                },
+                {
+                  "name": "reward_currency_id",
+                  "type": "CurrencyId"
+                }
+              ],
+              "type": "BalanceWrapper"
+            },
             "computeVaultReward": {
               "description": "Get a given vault's rewards due",
               "params": [
@@ -56257,6 +56383,24 @@ export const typesBundle = {
               "description": "Get all vaults with non-zero redeemable tokens, ordered in descending order of this amount",
               "params": [],
               "type": "Vec<(VaultId, BalanceWrapper)>"
+            }
+          },
+          "dexStable": {
+            "getA": {
+              "description": "Get amplification coefficient of pool",
+              "params": [
+                {
+                  "name": "pool_id",
+                  "type": "StablePoolId"
+                },
+                {
+                  "name": "at",
+                  "type": "BlockHash",
+                  "isHistoric": true,
+                  "isOptional": true
+                }
+              ],
+              "type": "NumberOrHex"
             }
           }
         },
@@ -56328,6 +56472,12 @@ export const typesBundle = {
               "InterbtcStablePoolId": "u32",
               "LendTokenId": "u32",
               "StablePoolId": "u32",
+              "NumberOrHex": {
+                "_enum": {
+                  "Number": "u64",
+                  "Hex": "U256"
+                }
+              },
               "Rate": "FixedU128",
               "Ratio": "Permill",
               "Liquidity": "FixedU128",
@@ -56642,6 +56792,24 @@ export const typesBundle = {
               ],
               "type": "BalanceWrapper"
             },
+            "computeFarmingReward": {
+              "description": "Get a given user's farming rewards due",
+              "params": [
+                {
+                  "name": "account_id",
+                  "type": "AccountId"
+                },
+                {
+                  "name": "pool_currency_id",
+                  "type": "CurrencyId"
+                },
+                {
+                  "name": "reward_currency_id",
+                  "type": "CurrencyId"
+                }
+              ],
+              "type": "BalanceWrapper"
+            },
             "computeVaultReward": {
               "description": "Get a given vault's rewards due",
               "params": [
@@ -56768,6 +56936,24 @@ export const typesBundle = {
               "description": "Get all vaults with non-zero redeemable tokens, ordered in descending order of this amount",
               "params": [],
               "type": "Vec<(VaultId, BalanceWrapper)>"
+            }
+          },
+          "dexStable": {
+            "getA": {
+              "description": "Get amplification coefficient of pool",
+              "params": [
+                {
+                  "name": "pool_id",
+                  "type": "StablePoolId"
+                },
+                {
+                  "name": "at",
+                  "type": "BlockHash",
+                  "isHistoric": true,
+                  "isOptional": true
+                }
+              ],
+              "type": "NumberOrHex"
             }
           }
         },
@@ -57977,6 +58163,12 @@ export const typesBundle = {
               "InterbtcStablePoolId": "u32",
               "LendTokenId": "u32",
               "StablePoolId": "u32",
+              "NumberOrHex": {
+                "_enum": {
+                  "Number": "u64",
+                  "Hex": "U256"
+                }
+              },
               "Rate": "FixedU128",
               "Ratio": "Permill",
               "Liquidity": "FixedU128",
@@ -58291,6 +58483,24 @@ export const typesBundle = {
               ],
               "type": "BalanceWrapper"
             },
+            "computeFarmingReward": {
+              "description": "Get a given user's farming rewards due",
+              "params": [
+                {
+                  "name": "account_id",
+                  "type": "AccountId"
+                },
+                {
+                  "name": "pool_currency_id",
+                  "type": "CurrencyId"
+                },
+                {
+                  "name": "reward_currency_id",
+                  "type": "CurrencyId"
+                }
+              ],
+              "type": "BalanceWrapper"
+            },
             "computeVaultReward": {
               "description": "Get a given vault's rewards due",
               "params": [
@@ -58417,6 +58627,24 @@ export const typesBundle = {
               "description": "Get all vaults with non-zero redeemable tokens, ordered in descending order of this amount",
               "params": [],
               "type": "Vec<(VaultId, BalanceWrapper)>"
+            }
+          },
+          "dexStable": {
+            "getA": {
+              "description": "Get amplification coefficient of pool",
+              "params": [
+                {
+                  "name": "pool_id",
+                  "type": "StablePoolId"
+                },
+                {
+                  "name": "at",
+                  "type": "BlockHash",
+                  "isHistoric": true,
+                  "isOptional": true
+                }
+              ],
+              "type": "NumberOrHex"
             }
           }
         },
@@ -77438,7 +77666,8 @@ export const typesBundle = {
             "LPSwapOutcomeInfo": {
               "amount": "Balance",
               "fee": "Balance",
-              "rewards": "Vec<LPRewardsInfo>"
+              "rewards": "Vec<LPRewardsInfo>",
+              "route": "Vec<AssetId>"
             },
             "LPRewardsInfo": {
               "amount": "Balance",
@@ -79106,7 +79335,8 @@ export const typesBundle = {
             "LPSwapOutcomeInfo": {
               "amount": "Balance",
               "fee": "Balance",
-              "rewards": "Vec<LPRewardsInfo>"
+              "rewards": "Vec<LPRewardsInfo>",
+              "route": "Vec<AssetId>"
             },
             "LPRewardsInfo": {
               "amount": "Balance",
@@ -81781,6 +82011,12 @@ export const typesBundle = {
               "InterbtcStablePoolId": "u32",
               "LendTokenId": "u32",
               "StablePoolId": "u32",
+              "NumberOrHex": {
+                "_enum": {
+                  "Number": "u64",
+                  "Hex": "U256"
+                }
+              },
               "Rate": "FixedU128",
               "Ratio": "Permill",
               "Liquidity": "FixedU128",
@@ -82095,6 +82331,24 @@ export const typesBundle = {
               ],
               "type": "BalanceWrapper"
             },
+            "computeFarmingReward": {
+              "description": "Get a given user's farming rewards due",
+              "params": [
+                {
+                  "name": "account_id",
+                  "type": "AccountId"
+                },
+                {
+                  "name": "pool_currency_id",
+                  "type": "CurrencyId"
+                },
+                {
+                  "name": "reward_currency_id",
+                  "type": "CurrencyId"
+                }
+              ],
+              "type": "BalanceWrapper"
+            },
             "computeVaultReward": {
               "description": "Get a given vault's rewards due",
               "params": [
@@ -82221,6 +82475,24 @@ export const typesBundle = {
               "description": "Get all vaults with non-zero redeemable tokens, ordered in descending order of this amount",
               "params": [],
               "type": "Vec<(VaultId, BalanceWrapper)>"
+            }
+          },
+          "dexStable": {
+            "getA": {
+              "description": "Get amplification coefficient of pool",
+              "params": [
+                {
+                  "name": "pool_id",
+                  "type": "StablePoolId"
+                },
+                {
+                  "name": "at",
+                  "type": "BlockHash",
+                  "isHistoric": true,
+                  "isOptional": true
+                }
+              ],
+              "type": "NumberOrHex"
             }
           }
         },
@@ -82292,6 +82564,12 @@ export const typesBundle = {
               "InterbtcStablePoolId": "u32",
               "LendTokenId": "u32",
               "StablePoolId": "u32",
+              "NumberOrHex": {
+                "_enum": {
+                  "Number": "u64",
+                  "Hex": "U256"
+                }
+              },
               "Rate": "FixedU128",
               "Ratio": "Permill",
               "Liquidity": "FixedU128",
@@ -82606,6 +82884,24 @@ export const typesBundle = {
               ],
               "type": "BalanceWrapper"
             },
+            "computeFarmingReward": {
+              "description": "Get a given user's farming rewards due",
+              "params": [
+                {
+                  "name": "account_id",
+                  "type": "AccountId"
+                },
+                {
+                  "name": "pool_currency_id",
+                  "type": "CurrencyId"
+                },
+                {
+                  "name": "reward_currency_id",
+                  "type": "CurrencyId"
+                }
+              ],
+              "type": "BalanceWrapper"
+            },
             "computeVaultReward": {
               "description": "Get a given vault's rewards due",
               "params": [
@@ -82732,6 +83028,24 @@ export const typesBundle = {
               "description": "Get all vaults with non-zero redeemable tokens, ordered in descending order of this amount",
               "params": [],
               "type": "Vec<(VaultId, BalanceWrapper)>"
+            }
+          },
+          "dexStable": {
+            "getA": {
+              "description": "Get amplification coefficient of pool",
+              "params": [
+                {
+                  "name": "pool_id",
+                  "type": "StablePoolId"
+                },
+                {
+                  "name": "at",
+                  "type": "BlockHash",
+                  "isHistoric": true,
+                  "isOptional": true
+                }
+              ],
+              "type": "NumberOrHex"
             }
           }
         },
